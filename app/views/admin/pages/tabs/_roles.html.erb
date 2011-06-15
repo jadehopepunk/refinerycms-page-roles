@@ -11,6 +11,7 @@
           </tr>
         </thead>
         <tbody>
+          <%= hidden_field_tag "#{f.object_name}[readable_role_ids][]", '' %>
           <%= render :partial => '/admin/pages/tabs/role', :locals => {:f => f}, :collection => Role.order("title = 'Superuser' DESC, id ASC") %>
         </tbody>
       </table>

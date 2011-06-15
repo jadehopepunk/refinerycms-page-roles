@@ -12,7 +12,6 @@ Feature: Change page roles
   Scenario: Reading default refinery roles
     Then the "Refinery" role should be checked for the Read column
 
-  @wip
   Scenario: Change a role's access
     When I uncheck the "Refinery" role to Read
     And I press "Save"

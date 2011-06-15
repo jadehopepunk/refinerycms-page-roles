@@ -1,4 +1,6 @@
 class PageRole < ActiveRecord::Base
+  belongs_to :page
+  belongs_to :role
 
   # def title was created automatically because you didn't specify a string field
   # when you ran the refinery_engine generator. Love, Refinery CMS.

@@ -1,8 +1,9 @@
 <tr id="<%= dom_id(role) %>">
   <td><%= role.title %></td>
-  <td><%= check_box_tag "#{f.object_name}[readable_role_ids][]", 
+  <td>
+    <%= check_box_tag "#{f.object_name}[readable_role_ids][]", 
             role.id, 
-            true, 
+            f.object.readable_by_role?(role), 
             :disabled => (role.title == 'Superuser'),
             :id => "page_role_readable_#{role.id}" %></td>
 </tr>

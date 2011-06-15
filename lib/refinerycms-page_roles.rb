@@ -1,4 +1,5 @@
 require 'refinerycms-base'
+require 'page_roles_extension'
 
 module Refinery
   module PageRoles
@@ -17,6 +18,10 @@ module Refinery
           plugin.hide_from_menu = true
         end
       end      
+
+      refinery.after_inclusion do
+        Page.send(:include, PageRolesExtension)
+      end
     end
   end
 end
