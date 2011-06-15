@@ -1,0 +1,10 @@
+en:
+  plugins:
+    page_images:
+      title: Page Roles
+      description: Page Roles allow you to restrict access to specific pages to users of certain roles only.
+  admin:
+    pages:
+      tabs:
+        roles:
+          add: Add Image

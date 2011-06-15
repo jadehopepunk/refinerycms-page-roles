@@ -1,0 +1,19 @@
+<div class='wym_skin_refinery page_part' id='page_role_picker'>
+  <div class='wym_area_top'>
+    <span class='clearfix label_inline_with_link'>
+    </span>
+    <div class='wym_box field images_field'>
+      <table>
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Read</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render :partial => '/admin/pages/tabs/role', :locals => {:f => f}, :collection => Role.order("title = 'Superuser' DESC, id ASC") %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
