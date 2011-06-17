@@ -17,7 +17,7 @@ module Refinery
           plugin.name = "page_roles"
           plugin.hide_from_menu = true
         end
-      end      
+      end
 
       refinery.after_inclusion do
         Page.send(:include, PageRolesExtension)
