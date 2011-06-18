@@ -20,6 +20,11 @@ describe "Page which is extended with page role functionality" do
     page_role.can_read.should == can_read
   end
   
+  def page_should_not_have_role(page, role)
+    page_role = page.page_roles.where(:role_id => role.id).first
+    page_role.should be_nil
+  end
+  
   describe "when setting readable page role ids" do
     before :each do
       @page = create_page
@@ -67,6 +72,24 @@ describe "Page which is extended with page role functionality" do
         @page.readable_role_ids = []
         @page.save!
         page_has_role(@page, @role, false)
+      end
+    end
+    
+    describe "for superuser role" do
+      before :each do
+        @superuser = Role.create!(:title => "Superuser")
+      end
+      
+      it "should not create as readable if specified" do
+        @page.readable_role_ids = [@superuser.id.to_s]
+        @page.save!
+        page_should_not_have_role(@page, @superuser)
+      end
+      
+      it "should not create as unreadable if unspecified" do
+        @page.readable_role_ids = []
+        @page.save!
+        page_should_not_have_role(@page, @superuser)
       end
     end
   end
