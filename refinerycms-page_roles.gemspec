@@ -7,4 +7,6 @@ Gem::Specification.new do |s|
   s.summary           = 'Page Roles engine for Refinery CMS'
   s.require_paths     = %w(lib)
   s.files             = Dir['lib/**/*', 'config/**/*', 'app/**/*']
+  
+  s.add_dependency('cancan', '>= 1.6.5')
 end
