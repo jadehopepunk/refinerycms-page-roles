@@ -23,10 +23,12 @@ module Refinery
 
         require 'page_roles_page_extension'
         require 'page_roles_role_extension'
+        require 'page_roles_user_extension'
         require 'page_roles_pages_controller_extension'
 
         Page.send(:include, PageRolesPageExtension)
         Role.send(:include, PageRolesRoleExtension)
+        User.send(:include, PageRolesUserExtension)
         
         PagesController.send(:include, PageRolesPagesControllerExtension)
       end
