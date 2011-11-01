@@ -2,15 +2,16 @@
 
 module PageRolesPagesControllerExtension
   def self.included(base)
-    puts "extending pages controller"
     base.before_filter :check_access_to_page
   end
   
   def check_access_to_page
-    raise "extension show"
-  end  
-  
-  def show
-    raise "calling show"
+    load_page.readable_by_user?(current_user)
   end
+  
+  private
+  
+    def load_page
+      @page ||= Page.find("#{params[:path]}/#{params[:id]}".split('/').last)
+    end
 end
