@@ -2,6 +2,7 @@ module PageRolesPageExtension
   def self.included(base)
     base.attr_accessible :readable_role_ids
     base.has_many :page_roles, :dependent => :destroy, :autosave => true
+    base.has_many :roles, :through => :page_roles
   end
 
   def readable_role_ids=(ids)
@@ -17,7 +18,7 @@ module PageRolesPageExtension
   end
 
   private
-  
+
     def readable_by_non_superuser_role?(role)
       page_role = page_roles.where(:role_id => role.id).first
       !page_role || page_role.can_read

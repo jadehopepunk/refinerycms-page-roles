@@ -1,6 +1,4 @@
 require 'refinerycms-base'
-require 'page_roles_page_extension'
-require 'page_roles_role_extension'
 
 module Refinery
   module PageRoles
@@ -21,8 +19,16 @@ module Refinery
       end
 
       refinery.after_inclusion do
+        PagesController
+
+        require 'page_roles_page_extension'
+        require 'page_roles_role_extension'
+        require 'page_roles_pages_controller_extension'
+
         Page.send(:include, PageRolesPageExtension)
         Role.send(:include, PageRolesRoleExtension)
+        
+        # PagesController.send(:include, PageRolesPagesControllerExtension)
       end
     end
   end
