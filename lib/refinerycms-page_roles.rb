@@ -28,7 +28,7 @@ module Refinery
         Page.send(:include, PageRolesPageExtension)
         Role.send(:include, PageRolesRoleExtension)
         
-        # PagesController.send(:include, PageRolesPagesControllerExtension)
+        PagesController.send(:include, PageRolesPagesControllerExtension)
       end
     end
   end

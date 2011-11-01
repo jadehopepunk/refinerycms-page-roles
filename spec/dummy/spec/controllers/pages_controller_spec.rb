@@ -43,9 +43,11 @@ describe PagesController do
       # end
       
       it "should not show page if page has role but user does not" do
+        @controller.class.send(:include, PageRolesPagesControllerExtension)
+        @controller.check_access_to_page
         @page.roles << member_role
         
-        get :home #, :id => @page.to_param
+        get :show, :id => @page.to_param
         response.should_not be_success
       end
     end
