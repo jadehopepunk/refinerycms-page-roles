@@ -25,7 +25,11 @@ module PageRolesPageExtension
   private
   
     def readable_by_user?(user)
-      roles.empty? || (user && user.can_access_resource?(roles, :read))
+      roles.empty? || (user && readable_by_roles?(user.roles))
+    end
+    
+    def readable_by_roles?(reader_roles)
+      !(reader_roles & roles).empty?
     end
 
     def readable_by_non_superuser_role?(role)

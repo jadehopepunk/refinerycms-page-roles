@@ -112,18 +112,24 @@ describe "Page which is extended with page role functionality" do
     
     describe "if user is not nil" do
       before :each do
-        @user = mock_model(User)
+        @user = User.new
       end
       
       it "should be readable if page has no roles" do
         @page.accessible_by_user?(@user, :read).should be_true
       end
 
-      it "should ask the user if it can read the resource" do
+      it "should be readable if user and page share a role" do
         role = Role.new
         @page.roles << role
-        @user.should_receive(:can_access_resource?).with([role], :read).and_return('fish')
-        @page.accessible_by_user?(@user, :read) #.should == 'fish'
+        @user.roles << role
+        @page.accessible_by_user?(@user, :read).should be_true
+      end
+      
+      it "should not be readable if user and page don't share a role" do
+        @page.roles << Role.new
+        @user.roles << Role.new
+        @page.accessible_by_user?(@user, :read).should be_false
       end
     end
   end
