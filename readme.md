@@ -1,6 +1,6 @@
 # Page Roles engine for Refinery CMS.
 
-NOT YET WORKING!!
+Basically working. Documentation needed.
 
 ## How to build this engine as a gem
 
