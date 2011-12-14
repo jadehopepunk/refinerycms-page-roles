@@ -1,6 +1,8 @@
 class PageRole < ActiveRecord::Base
   belongs_to :page
   belongs_to :role
+  
+  scope :readable, where(:can_read => true)
 
   # def title was created automatically because you didn't specify a string field
   # when you ran the refinery_engine generator. Love, Refinery CMS.

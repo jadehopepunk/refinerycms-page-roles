@@ -17,14 +17,14 @@ module Refinery
           plugin.hide_from_menu = true
         end
       end
-
+      
       refinery.after_inclusion do
         PagesController
-
+      
         require 'page_roles_page_extension'
         require 'page_roles_role_extension'
         require 'page_roles_pages_controller_extension'
-
+      
         Page.send(:include, PageRolesPageExtension)
         Role.send(:include, PageRolesRoleExtension)
         

@@ -96,7 +96,8 @@ describe "Page which is extended with page role functionality" do
 
   describe "when determining if page is readable by user" do
     before :each do
-      @page = Page.new
+      @page = Page.create!(:title => 'some page')
+      role = Role.create!(:title => 'Anonymous')
     end
     
     describe "if user is nil" do
@@ -104,9 +105,20 @@ describe "Page which is extended with page role functionality" do
         @page.accessible_by_user?(nil, :read).should be_true
       end
       
-      it "should not be readable if page has roles" do
-        @page.roles << Role.new
+      it "should not be readable if page has roles but not Anonymous role" do
+        @page.roles << Role.new(:title => 'Some Role')
         @page.accessible_by_user?(nil, :read).should be_false
+      end
+      
+      it "should be readable if page only has Anonymous role" do
+        @page.roles << Role.anonymous
+        @page.accessible_by_user?(nil, :read).should be_true
+      end
+      
+      it "should be readable if page has roles including Anonymous" do
+        @page.roles << Role.new(:title => 'Some Role')
+        @page.roles << Role.anonymous
+        @page.accessible_by_user?(nil, :read).should be_true
       end
     end
     

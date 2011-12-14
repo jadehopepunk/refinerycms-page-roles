@@ -25,11 +25,19 @@ module PageRolesPageExtension
   private
   
     def readable_by_user?(user)
-      roles.empty? || (user && readable_by_roles?(user.roles))
+      user_roles = user ? user.roles : [Role.anonymous]
+      readable_page_roles = readable_roles
+      readable_page_roles.empty? || (readable_by_roles?(user_roles, readable_page_roles))
+    end
+
+    def readable_by_roles?(reader_roles, readable_page_roles)
+      matching_roles = reader_roles & readable_page_roles
+      # raise "#{reader_roles.inspect} & #{readable_page_roles.inspect} = #{matching_roles.inspect}"
+      !matching_roles.empty?
     end
     
-    def readable_by_roles?(reader_roles)
-      !(reader_roles & roles).empty?
+    def readable_roles
+      page_roles.readable.map(&:role)
     end
 
     def readable_by_non_superuser_role?(role)

@@ -1,8 +1,8 @@
 PATH
   remote: ../..
   specs:
-    refinerycms-page_roles (1.0)
-      cancan (>= 1.6.5)
+    refinerycms-page_roles (0.1)
+      refinerycms-pages (~> 1.0.8)
 
 GEM
   remote: http://rubygems.org/
@@ -41,7 +41,6 @@ GEM
     babosa (0.3.5)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
-    cancan (1.6.5)
     devise (1.4.9)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
